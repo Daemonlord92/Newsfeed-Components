@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'DoomSlayer',
+    date: 'March 17, 2020',
+    firstParagraph: 'In the first age, in the first battle, when the shadows first lengthened, one stood. Burned by the embers of Armageddon, his soul blistered by the fires of Hell and tainted beyond ascension, he chose the path of perpetual torment. In his ravenous hatred he found no peace; and with boiling blood he scoured the Umbral Plains seeking vengeance against the dark lords who had wronged him. He wore the crown of the Night Sentinels, and those that tasted the bite of his sword named him... the Doom Slayer.',
+    secondParagraph: 'Tempered by the fires of Hell, his iron will remained steadfast through the passage that preys upon the weak. For he alone was the Hell Walker, the Unchained Predator, who sought retribution in all quarters, dark and light, fire and ice, in the beginning and the end, and he hunted the slaves of Doom with barbarous cruelty; for he passed through the divide as none but demon had before.',
+    thirdParagraph: 'And in his conquest against the blackened souls of the doomed, his prowess was shown. In his crusade, the seraphim bestowed upon him terrible power and speed, and with his might he crushed the obsidian pillars of the Blood Temples. He set forth without pity upon the beasts of the nine circles. Unbreakable, incorruptible, unyielding, the Doom Slayer sought to end the dominion of the dark realm.'
   }
 ];
 
@@ -112,3 +119,48 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+
+  const article = document.createElement('div')
+  const artTitle = document.createElement('h2')
+  const artDate = document.createElement('p')
+  const artFirst = document.createElement('p')
+  const artSecond = document.createElement('p')
+  const artThird = document.createElement('p')
+  const expandButton = document.createElement('span')
+
+  article.appendChild(artTitle)
+  article.appendChild(artDate)
+  article.appendChild(artFirst)
+  article.appendChild(artSecond)
+  article.appendChild(artThird)
+  article.appendChild(expandButton)
+
+  article.classList.add('article')
+  artDate.classList.add('date')
+  expandButton.classList.add('expandButton')
+
+  artTitle.textContent = title
+  artDate.textContent = date
+  artFirst.textContent = firstParagraph
+  artSecond.textContent = secondParagraph
+  artThird.textContent = thirdParagraph
+
+  const exIcon = '\u25bc'
+
+  expandButton.textContent = exIcon
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+    
+  })
+
+  return article
+
+}
+
+const articleContainer = document.querySelector('.articles')
+
+data.forEach(data =>{
+  articleContainer.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
